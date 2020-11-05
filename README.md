@@ -11,13 +11,17 @@
 #### 使用方式
 
 *   MacOs 平台
+
     ./process_perf_osx -p <待监控的进程PID>
 
 *   Linux 平台
+
     ./process_perf_linux -p <待监控的进程PID>
 
 *   Windows 平台
+
     ./process_perf_windows -p <待监控的进程PID>
+
 
 启动后会每 2S 进行一次采样，你可以使用 Ctrl+C 终止采样。采样停止时会根据已采样数据进行图表生成；生成的图表以 chart.html 文件的形成输出到命令执行的目录，你可以双击文件打开在浏览器中进行查看。
 
