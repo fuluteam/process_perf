@@ -1,0 +1,59 @@
+trigger:
+  branches:
+    include:
+      - refs/tags/*
+variables:
+  goVersion: '1.15.2'
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps: 
+- task: GoTool@0
+  displayName: 'Use Go ${{ variables.goVersion }}'
+  inputs:
+    version: ${{ variables.goVersion }}
+
+- task: Go@0
+  displayName: 'Run UnitTest'
+  inputs:
+    command: 'test'
+    arguments: '-v ./...'
+    workingDirectory: '$(System.DefaultWorkingDirectory)'
+- task: Go@0
+  displayName: 'Build Application Binary For MacOS'
+  env:
+    CGO_ENABLED: 0
+    GOOS: darwin
+    GOARCH: amd64
+  inputs:
+    command: 'build'
+    workingDirectory: '$(System.DefaultWorkingDirectory)'
+    arguments: '-o $(Build.ArtifactStagingDirectory)/process_perf_osx'
+- task: Go@0
+  displayName: 'Build Application Binary For Linux'
+  env:
+    CGO_ENABLED: 0
+    GOOS: linux
+    GOARCH: amd64
+  inputs:
+    command: 'build'
+    workingDirectory: '$(System.DefaultWorkingDirectory)'
+    arguments: '-o $(Build.ArtifactStagingDirectory)/process_perf_linux' 
+- task: Go@0
+  displayName: 'Build Application Binary For Windows'
+  env:
+    CGO_ENABLED: 0
+    GOOS: windows
+    GOARCH: amd64
+  inputs:
+    command: 'build'
+    workingDirectory: '$(System.DefaultWorkingDirectory)'
+    arguments: '-o $(Build.ArtifactStagingDirectory)/process_perf_windows'       
+- task: GithubRelease@0 
+  displayName: 'Create GitHub Release'      
+  inputs:
+    gitHubConnection: 'github.com_chujieyang'
+    repositoryName: 'chujieyang/process_perf'   
+    tagSource: manual
+    tag: $(Build.BuildNumber)   
+    assets: $(Build.ArtifactStagingDirectory)/*
