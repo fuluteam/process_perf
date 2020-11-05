@@ -1,7 +1,7 @@
 trigger:
   branches:
     include:
-      - refs/branchs/master
+    - master
 variables:
   goVersion: '1.15.2'
 pool:
