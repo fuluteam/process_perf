@@ -1,7 +1,7 @@
 trigger:
   branches:
     include:
-      - refs/tags/*
+      - refs/branchs/master
 variables:
   goVersion: '1.15.2'
 pool:
@@ -53,5 +53,5 @@ steps:
   displayName: 'Create GitHub Release'      
   inputs:
     gitHubConnection: 'github.com_chujieyang'
-    repositoryName: 'chujieyang/process_perf'   
+    repositoryName: 'chujieyang/process_perf'
     assets: $(Build.ArtifactStagingDirectory)/*
