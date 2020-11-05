@@ -54,6 +54,4 @@ steps:
   inputs:
     gitHubConnection: 'github.com_chujieyang'
     repositoryName: 'chujieyang/process_perf'   
-    tagSource: manual
-    tag: $(Build.BuildNumber)   
     assets: $(Build.ArtifactStagingDirectory)/*
