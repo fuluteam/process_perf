@@ -48,7 +48,7 @@ steps:
   inputs:
     command: 'build'
     workingDirectory: '$(System.DefaultWorkingDirectory)'
-    arguments: '-o $(Build.ArtifactStagingDirectory)/process_perf_windows'       
+    arguments: '-o $(Build.ArtifactStagingDirectory)/process_perf_windows.exe'       
 - task: GithubRelease@0 
   displayName: 'Create GitHub Release'      
   inputs:

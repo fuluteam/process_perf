@@ -4,9 +4,11 @@ go 1.12
 
 require (
 	github.com/StackExchange/wmi v0.0.0-20190523213315-cbe66965904d // indirect
+	github.com/axw/gocov v1.0.0 // indirect
 	github.com/go-echarts/go-echarts v1.0.0
 	github.com/go-ole/go-ole v1.2.4 // indirect
 	github.com/labstack/gommon v0.3.0
+	github.com/matm/gocov-html v0.0.0-20200509184451-71874e2e203b // indirect
 	github.com/mitchellh/go-homedir v1.1.0
 	github.com/shirou/gopsutil v2.20.7+incompatible
 	github.com/spf13/cobra v1.0.0
